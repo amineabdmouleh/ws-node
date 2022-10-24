@@ -1,0 +1,219 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "version": "1.0.0",
+        "title": "Nodejs + Mongodb Project CRUD",
+        "description": "Nodejs + Mongodb Project Application API",
+        "license": {
+            "name": "MIT",
+            "url": "https://opensource.org/license/MIT"
+        }
+    },
+    "host": "localhost:8000",
+    "basePath": "/",
+    "tags": [{
+        "name": "Assurance",
+        "description": "API for assurance in the system"
+    }],
+    "paths": {
+        "/api/assurance": {
+            "post": {
+                "tags": ["Assurance"],
+                "description": "Create new assurance in system",
+                "requestBody": {
+                    "required": "true",
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "$ref": "#/definitions/Assurance"
+                            }
+                        }
+                    }
+                },
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "New assurance is created",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "description": {
+                                            "type": "string",
+                                            "example": "Successfully created data!"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "get": {
+                "tags": ["Assurance"],
+                "description": "Get all assurance in system",
+                "responses": {
+                    "200": {
+                        "description": "Get all assurance in system",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "description": {
+                                            "type": "string",
+                                            "example": "Successfully fetched all data!"
+                                        },
+                                        "data": {
+                                            "type": "array",
+                                            "items": {
+                                                "$ref": "#/definitions/Assurance"
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/assurance/{id}": {
+            "get": {
+                "tags": ["Assurance"],
+                "description": "Get assurance data by id in system",
+                "parameters": [{
+                    "name": "id",
+                    "in": "path",
+                    "required": "true",
+                    "description": "id parameter input",
+                    "schema": {
+                        "type": "string"
+                    }
+                }],
+                "responses": {
+                    "200": {
+                        "description": "Get assurance by id in system",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "description": {
+                                            "type": "string",
+                                            "example": "Successfully fetched data!"
+                                        },
+                                        "data": {
+                                            "type": "object",
+                                            "$ref": "#/definitions/Assurance"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "patch": {
+                "tags": ["Assurance"],
+                "description": "Update assurance data in system",
+                "parameters": [{
+                    "name": "id",
+                    "in": "path",
+                    "required": "true",
+                    "description": "id parameter input",
+                    "schema": {
+                        "type": "string"
+                    }
+                }],
+                "requestBody": {
+                    "required": "true",
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "$ref": "#/definitions/Assurance"
+                            }
+                        }
+                    }
+                },"responses": {
+                    "200": {
+                        "description": "Update assurance by id in system",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "description": {
+                                            "type": "string",
+                                            "example": "Successfully updated data!"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "delete": {
+                "tags": ["Assurance"],
+                "description": "Delete assurance data in system",
+                "parameters": [{
+                    "name": "id",
+                    "in": "path",
+                    "required": "true",
+                    "description": "id parameter input",
+                    "schema": {
+                        "type": "string"
+                    }
+                }],"responses": {
+                    "200": {
+                        "description": "Delete assurance by id in system",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "description": {
+                                            "type": "string",
+                                            "example": "Successfully updated data!"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "definitions": {
+        "Assurance": {
+            "required": [
+                "_id",
+                "type",
+                "prix",
+                "description"
+            ],
+            "properties": {
+                "_id": {
+                    "type": "string",
+                    "uniqueItems": true
+                },
+                "type": {
+                    "type": "string"
+                },
+                "prix": {
+                    "type": "string"
+                },
+                "description": {
+                    "type": "string"
+                }
+            }
+        }
+    }
+}
