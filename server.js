@@ -1,3 +1,5 @@
+const eurekaHelper = require('./eureka-helper');
+
 const express = require('express')
 const connectDB = require('./config/database')
 const { errorHandler } = require('./middleware/error-handler')
@@ -11,7 +13,7 @@ const app = express()
 connectDB()
 
 // set port 
-const port = process.env.PORT || 8081
+const port = process.env.PORT || 3000
 // parse request of content-type - application/json
 app.use(express.json())
 //define a root route
@@ -19,7 +21,7 @@ app.get("/",(req,res)=>{
     res.send("Welcome Everybody")
 })
 // router
-app.use("/api/assurance", require("./routes/assurance-routes"))
+app.use("/node", require("./routes/remboursement-routes"))
 // main listen
 app.listen(port,()=>{
     console.log("Server started Port " + port)
@@ -33,5 +35,6 @@ const swaggerUi = require('swagger-ui-express')
 swaggerDocument = require('./swagger.json')
 app.use('/api-docs',swaggerUi.serve, swaggerUi.setup(swaggerDocument))
 
+eurekaHelper.registerWithEureka('api-assurance', port);
 
 module.exports = app

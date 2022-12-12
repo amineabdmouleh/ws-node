@@ -16,7 +16,7 @@
         "description": "API for assurance in the system"
     }],
     "paths": {
-        "/api/assurance": {
+        "/assurance": {
             "post": {
                 "tags": ["Assurance"],
                 "description": "Create new assurance in system",
@@ -82,7 +82,7 @@
                 }
             }
         },
-        "/api/assurance/{id}": {
+        "/assurance/{id}": {
             "get": {
                 "tags": ["Assurance"],
                 "description": "Get assurance data by id in system",
